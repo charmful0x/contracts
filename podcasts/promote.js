@@ -80,11 +80,11 @@ export async function handle (state, action) {
 		balances[caller] -= qty 
 		proposal.total_staked += qty
 
-		if (! proposal.stakes_per_voter.caller) {
-			proposal.stakes_per_voter.caller = 0
+		if (! proposal.stakes_per_voter[caller]) {
+			proposal.stakes_per_voter[caller] = 0
 		}
 
-		proposal.stakes_per_voter.caller += qty
+		proposal.stakes_per_voter[caller] += qty
 
 		_updateRanks()
 
@@ -104,7 +104,7 @@ export async function handle (state, action) {
 
 		balances[caller] += qty 
 		proposal.total_staked -= qty
-		proposal.stakes_per_voter.caller -= qty 
+		proposal.stakes_per_voter[caller] -= qty 
 
 		_updateRanks()
 
